@@ -1,0 +1,8 @@
+- name: haproxy
+  hosts: haproxy
+  become: yes
+  roles:
+  - apt
+  - ntp
+  - haproxy
+  - monit

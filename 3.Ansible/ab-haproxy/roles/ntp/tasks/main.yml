@@ -1,0 +1,18 @@
+---
+# tasks file for ntp
+# - name: Set timezone to Europe/Minsk
+#   community.general.timezone:
+#     name: Europe/Minsk
+
+
+- name: Install ntp
+  apt:
+    state: present
+    name: ntpdate
+
+- name: Sync cron
+  cron:
+    name: ntpdate
+    minute: "0"
+    hour: "5"
+    job: "ntpdate 178.124.164.107"
