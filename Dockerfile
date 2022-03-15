@@ -12,7 +12,7 @@ COPY *.csproj .
 COPY . .
 
 # Build a release artifact.
-RUN dotnet publish -c Release -o out --no-restore
+RUN dotnet publish -c Release -o --no-restore
 
 # Make sure the app binds to port 8080
 ENV ASPNETCORE_URLS http://*:8080
