@@ -3,12 +3,11 @@ WORKDIR /source
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY aspnetapp/*.csproj ./HelloWorldAspNetCore/
+COPY *.csproj .
 RUN dotnet restore
 
 # copy everything else and build app
-COPY HelloWorldAspNetCore/. ./HelloWorldAspNetCore/
-WORKDIR /source/HelloWorldAspNetCore
+COPY . .
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
