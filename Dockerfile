@@ -1,17 +1,21 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0 
-WORKDIR /source
 
-# copy csproj and restore as distinct layers
-COPY *.sln .
-COPY *.csproj .
-RUN dotnet restore
 
-# copy everything else and build app
-COPY . .
-RUN dotnet publish -c release -o /app --no-restore
+# https://hub.docker.com/r/microsoft/dotnet
+FROM mcr.microsoft.com/dotnet/sdk:6.0
 
-# final stage/image
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+# Install production dependencies.
+# Copy csproj and restore as distinct layers.
 WORKDIR /app
-COPY --from=build /app ./
-ENTRYPOINT ["dotnet", "HelloWorldAspNetCore.dll"]
+COPY *.csproj .
+
+# Copy local code to the container image.
+COPY . .
+
+# Build a release artifact.
+RUN dotnet publish -c Release -o out
+
+# Make sure the app binds to port 8080
+ENV ASPNETCORE_URLS http://*:8080
+
+# Run the web service on container startup.
+CMD ["dotnet", "out/HelloWorldAspNetCore.dll"]
