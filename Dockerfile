@@ -10,9 +10,10 @@ COPY *.csproj .
 
 # Copy local code to the container image.
 COPY . .
+RUN dotnet restore
 
 # Build a release artifact.
-RUN dotnet publish -c Release -o /app --no-restore
+RUN dotnet publish -c Release -o 
 
 # Make sure the app binds to port 8080
 ENV ASPNETCORE_URLS http://*:8080
