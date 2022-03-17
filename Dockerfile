@@ -13,10 +13,10 @@ COPY . .
 RUN dotnet restore
 
 # Build a release artifact.
-RUN dotnet publish -c Release -o 
+RUN dotnet publish -c Release -o /app
 
-# Make sure the app binds to port 8080
-ENV ASPNETCORE_URLS http://*:8080
+
+
 
 # Run the web service on container startup.
 CMD ["dotnet", "out/HelloWorldAspNetCore.dll"]
