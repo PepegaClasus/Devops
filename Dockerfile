@@ -19,4 +19,4 @@ RUN dotnet publish -c Release -o /app
 
 
 # Run the web service on container startup.
-CMD ["dotnet", "out/HelloWorldAspNetCore.dll"]
+CMD ["dotnet", "HelloWorldAspNetCore.dll"]
