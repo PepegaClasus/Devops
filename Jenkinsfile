@@ -2,8 +2,6 @@ pipeline{
     agent any
     environment {
         dockerImage = ''
-        dockerRun = ''
-        
     }
     stages {
         stage ('Checkout'){
@@ -33,7 +31,10 @@ pipeline{
         stage ('Push to Remote server'){
             steps{
                 script{
-                    dockerRun = docker run -p 8080:8080 -d -name nodehelloapp "${dockerImage}"
+                    def dockerRun = 'docker run -d -p 80:8080 --name nodehelloapp "${USR}/${DOCKER_IMAGE_NAME}"'
+                    sshagent(['dev-server']) {
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@44.199.250.204 ${dockerRun}"
+                    }
                 }
             }
         }
