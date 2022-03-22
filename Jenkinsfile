@@ -6,7 +6,7 @@ pipeline{
     stages {
         stage ('Checkout'){
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/staging']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-ssh-keygen', url: 'git@github.com:PepegaClasus/Devops.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/staging']], extensions: [], userRemoteConfigs: [[credentialsId: 'git_hub_credentials', url: 'git@github.com:PepegaClasus/Devops.git']]])
             }
         }
         stage ('Build docker image'){
@@ -31,9 +31,9 @@ pipeline{
         stage ('Push to Remote server'){
             steps{
                 script{
-                    def dockerRun = 'docker run -p 8080:8080 -d --name "${container_name}" "${USR}/${DOCKER_IMAGE_NAME}"'
+                    def dockerRun = 'docker run -p 80:80 -d --name "${container_name}" "${USR}/${DOCKER_IMAGE_NAME}"'
                     sshagent(['dev-server']) {
-                        sh "ssh -o StrictHostKeyChecking=no ubuntu@44.201.33.118 ${dockerRun}"
+                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.80.159.225 ${dockerRun}"
                     }
                 }
             }
