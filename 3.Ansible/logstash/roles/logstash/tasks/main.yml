@@ -1,0 +1,7 @@
+---
+# tasks file for logstash
+- name: Install logstash
+  apt:
+    deb: https://artifacts.elastic.co/downloads/logstash/logstash-8.1.0-amd64.deb
+  notify:
+  - Restart Logstash

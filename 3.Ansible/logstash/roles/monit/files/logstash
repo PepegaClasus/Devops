@@ -1,0 +1,3 @@
+check process logstash.service matching "logstash.*"
+  start program = "/bin/systemctl start logstash"
+  stop program = "/bin/systemctl stop logstash"

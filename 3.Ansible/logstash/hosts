@@ -1,0 +1,6 @@
+[logstash]
+3.231.153.219
+
+[logstash:vars]
+ansible_ssh_user=ubuntu
+ansible_ssh_private_key_file=/home/vladimir/Downloads/Linux-key.pem

@@ -1,0 +1,7 @@
+---
+# tasks file for elasticsearch
+- name: Install ElasticSearch
+  apt:
+    deb: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-8.1.0-amd64.deb
+  notify:
+  - Restart elasticsearch

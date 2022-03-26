@@ -1,0 +1,10 @@
+ - name: logstash
+   hosts: logstash
+   become: yes
+   roles:
+     - apt
+     - ntp
+     - java
+     - elasticsearch
+     - logstash
+     - monit
