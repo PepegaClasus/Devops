@@ -1,8 +1,0 @@
----
-# tasks file for monit
-- name: Install monit
-  apt:
-    name: monit
-    state: present
-  notify:
-    - Restart monit
