@@ -1,0 +1,10 @@
+ - name: webui
+   hosts: webui
+   become: yes
+   roles:
+     - apt
+     - ntp
+     - kibana
+     - nginx
+     - rsyslog
+     - monit

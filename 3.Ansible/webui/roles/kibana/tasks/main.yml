@@ -1,0 +1,16 @@
+---
+# tasks file for kibana
+- name: Unarchive a file that needs to be downloaded (Kibana 3.x)
+  unarchive:
+    src: https://download.elastic.co/kibana/kibana/kibana-3.0.0.tar.gz
+    dest: /etc/
+    remote_src: yes
+
+
+- name: Replace line in /etc/kibana/config.js
+  lineinfile:
+    path: /etc/kibana-3.0.0/config.js
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+    backrefs: yes
+  loop: '{{ lines_to_replace }}'

@@ -1,0 +1,15 @@
+---
+# tasks file for nginx
+- name: Install nginx
+  apt:
+    name: nginx
+    state: latest
+  notify:
+  - Restart nginx
+
+- name: Conf file
+  template:
+    src: kibana.cfg
+    dest: /etc/nginx/sites-available/kibana
+  notify:
+  - Restart nginx

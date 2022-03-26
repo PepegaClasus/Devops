@@ -1,0 +1,7 @@
+---
+# defaults file for rsyslog
+lines_to_replace:
+ - { regexp: '^(.*)ModLoad imudp(.*)$', line: '$ModLoad imudp' }
+ - { regexp: '^(.*)UDPServerRun(.*)$', line: '$UDPServerRun 514' }
+ - { regexp: '^(.*)ModLoad imtcp(.*)$', line: '$ModLoad imtcp' }
+ - { regexp: '^(.*)InputTCPServerRun(.*)', line: '$InputTCPServerRun 514' }

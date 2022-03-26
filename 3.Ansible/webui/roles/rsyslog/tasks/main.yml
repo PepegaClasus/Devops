@@ -1,0 +1,18 @@
+---
+# tasks file for rsyslog
+- name: Rsyslog package
+  apt_repository:
+    repo: ppa:adiscon/v8-devel
+
+- name: Install rsyslog
+  apt:
+    update_cache: yes
+    name: rsyslog
+    state: present
+
+- name: Replacing lines in rsyslog.conf
+  lineinfile:
+    path: /etc/rsyslog.conf
+    regexp: '{{ item.regexp }}'
+    line: '{{ item.line }}'
+  loop: '{{ lines_to_replace }}'
