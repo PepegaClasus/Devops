@@ -22,32 +22,12 @@ resource "aws_eip" "nat_eip1" {
   vpc        = true
   depends_on = [aws_internet_gateway.ig]
 }
-#Elastic Ip2
-resource "aws_eip" "nat_eip2" {
-  vpc        = true
-  depends_on = [aws_internet_gateway.ig]
-}
-#Elastic Ip2
-resource "aws_eip" "nat_eip3" {
-  vpc        = true
-  depends_on = [aws_internet_gateway.ig]
-}
 
 
-#NAT Gateaway1
-resource "aws_nat_gateway" "NAT1" {
-  allocation_id = aws_eip.nat_eip1.id
-  subnet_id     = aws_subnet.public_subnet1.id
-  depends_on = [aws_internet_gateway.ig]
-}
-#NAT Gateaway2
-resource "aws_nat_gateway" "NAT2" {
-  allocation_id = aws_eip.nat_eip2.id
-  subnet_id     = aws_subnet.public_subnet2.id
-  depends_on = [aws_internet_gateway.ig]
-}
+
 #Private NAT Gateaway
-resource "aws_nat_gateway" "example" {
+resource "aws_nat_gateway" "privateNAT" {
+  allocation_id = aws_eip.nat_eip1.id
   connectivity_type = "private"
   subnet_id = aws_subnet.private_subnet1.id
 }
@@ -94,7 +74,7 @@ resource "aws_route" "public_internet_gateway" {
 resource "aws_route" "private_nat_gateway" {
   route_table_id = aws_route_table.private_route_table.id
   destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.NAT1.id
+  nat_gateway_id         = aws_nat_gateway.privateNAT.id
 }
 
 resource "aws_route_table_association" "public1" {
