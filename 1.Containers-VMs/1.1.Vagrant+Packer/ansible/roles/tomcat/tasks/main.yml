@@ -1,0 +1,15 @@
+---
+# tasks file for tomcat
+- name: download tomcat server packages
+  get_url:
+    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.77/bin/apache-tomcat-8.5.77.tar.gz
+    dest: /usr/local
+
+- name: extract tomcat packages
+  unarchive:
+    src: /usr/local/apache-tomcat-8.5.77.tar.gz
+    dest: /usr/local
+    remote_src: yes
+
+- name: start tomcat services
+  shell: nohup /usr/local/apache-tomcat-8.5.77/bin/startup.sh

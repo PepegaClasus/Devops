@@ -1,0 +1,9 @@
+---
+  - name: Install all
+    become: yes
+    hosts: all
+    roles: 
+      - delete_mysql
+      - install_mariadb
+
+

@@ -1,0 +1,11 @@
+---
+  - name: Install all
+    become: yes
+    hosts: all
+    roles: 
+    - nginx
+    - java
+    - tomcat
+    - mysql
+
+

@@ -1,0 +1,10 @@
+---
+- name: Install Tomcat
+- hosts: all
+  tasks:
+    - name: Install Tomcat 9 on Ubuntu
+      become: yes
+      apt: pkg={{ item }} state=latest update_cache=yes cache_valid_time=3600
+      with_items:
+        - tomcat9
+

@@ -1,0 +1,29 @@
+---
+# tasks file for mysql
+- name: Installing Mysql  and dependencies
+  package:
+    name: "{{item}}"
+    state: present
+    update_cache: yes
+  loop:
+    - mysql-server
+    - mysql-client 
+    - python3-dev
+    - python3-mysqldb
+    - libmysqlclient-dev
+- name: start and enable mysql service
+  service:
+    name: mysql
+    state: started
+    enabled: yes    
+- name: creating mysql user (medium_post)
+  mysql_user:
+    name: "{{db_user}}"
+    password: "{{db_pass}}"
+    priv: '*.*:ALL'
+    host: '%'
+    state: present    
+- name: creating medium_db
+  mysql_db:
+    name: "{{db_name}}"
+    state: present

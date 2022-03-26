@@ -1,0 +1,19 @@
+---
+# tasks file for delete_mysql
+- name: Uninstall a MySQL server & client
+  apt:
+    name: "{{ item }}"
+    state: absent
+    purge: yes
+  with_items:
+     - mysql-server
+     - mysql-client 
+     - python3-dev
+     - python3-mysqldb
+     - libmysqlclient-dev
+- name: Remove useless packages from the cache
+  apt:
+    autoclean: yes
+- name: Remove dependencies that are no longer required
+  apt:
+    autoremove: yes
