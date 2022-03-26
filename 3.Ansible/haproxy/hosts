@@ -1,6 +1,0 @@
-[haproxy]
-54.209.15.209
-
-[haproxy:vars]
-ansible_ssh_user=ubuntu
-ansible_ssh_private_key_file=/home/vladimir/Downloads/Linux-key.pem

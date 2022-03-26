@@ -1,7 +1,0 @@
----
-# handlers file for monit
-- name: Restart monit
-  service:
-    name: monit
-    state: reloaded
-    enabled: yes 

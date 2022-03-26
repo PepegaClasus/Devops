@@ -1,7 +1,0 @@
----
-# handlers file for haproxy
-- name: Restart Haproxy
-  systemd:
-    name: haproxy
-    state: restarted
-    enabled: yes
