@@ -1,0 +1,11 @@
+---
+# tasks file for apt
+- name: Update cache
+  apt:
+    update_cache: yes
+    force_apt_get: yes
+
+- name: Upgrade cache
+  apt:
+    upgrade: yes
+    force_apt_get: yes
