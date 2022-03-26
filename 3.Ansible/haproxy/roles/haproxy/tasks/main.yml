@@ -1,0 +1,13 @@
+---
+# tasks file for haproxy
+- name: Install Haproxy
+  package:
+    name: haproxy
+    state: present
+
+- name: Copy conf file
+  template:
+    src: haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+  - Restart Haproxy

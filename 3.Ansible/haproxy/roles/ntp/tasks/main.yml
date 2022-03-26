@@ -1,0 +1,13 @@
+---
+# tasks file for ntp
+- name: Install ntp
+  apt:
+    name: ntpdate
+    state: present
+
+- name: Sync cron
+  cron:
+    name: ntpdate
+    minute: "0"
+    hour: "5"
+    job: "ntpdate 178.124.164.107"
