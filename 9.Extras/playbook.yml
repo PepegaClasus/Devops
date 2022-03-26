@@ -1,0 +1,14 @@
+- name: test
+  hosts: test
+  become: yes
+  roles:
+  - Apache
+  - MySQL
+  - NPM
+
+
+  post_tasks:
+    - name: Install Python3
+      yum:
+        name: python3
+        state: present

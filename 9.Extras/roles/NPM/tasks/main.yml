@@ -1,0 +1,12 @@
+---
+# tasks file for NPM
+- name: Get Nodejs from repo
+  yum:
+    name: https://rpm.nodesource.com/pub_14.x/el/8/x86_64/nodesource-release-el8-1.noarch.rpm
+    state: present
+
+- name: Install nodejs
+  yum:
+    name: nodejs
+    state: present
+    update_cache: yes
