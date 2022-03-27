@@ -5,12 +5,8 @@
     name: "{{item}}"
     state: present
     update_cache: yes
-  loop:
-    - mysql-server
-    - mysql-client 
-    - python3-dev
-    - python3-mysqldb
-    - libmysqlclient-dev
+  loop: "{{packages}}"
+    
 - name: start and enable mysql service
   service:
     name: mysql
