@@ -1,5 +1,5 @@
 [haproxy]
-54.209.15.209
+18.213.150.41
 
 [haproxy:vars]
 ansible_ssh_user=ubuntu
