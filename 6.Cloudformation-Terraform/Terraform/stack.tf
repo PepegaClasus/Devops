@@ -27,7 +27,6 @@ resource "aws_eip" "nat_eip1" {
 
 #Private NAT Gateaway
 resource "aws_nat_gateway" "privateNAT" {
-  allocation_id = aws_eip.nat_eip1.id
   connectivity_type = "private"
   subnet_id = aws_subnet.private_subnet1.id
 }
